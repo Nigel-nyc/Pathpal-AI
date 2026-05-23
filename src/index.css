@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#how-it-works {
+  scroll-margin-top: 96px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(60, 30, 120, 0.25), transparent 60%),
+    radial-gradient(900px 500px at 50% 110%, rgba(20, 10, 40, 0.6), transparent 60%),
+    #02030a;
+  overflow-x: hidden;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Chinese mode — keep the SAME className-driven layout/sizing/spacing,
+   but normalize CJK metrics so visual rhythm matches the English version.
+   - Proper CJK font fallback (Inter has no CJK glyphs).
+   - letter-spacing widens dense CJK runs so paragraphs occupy similar width.
+   - Tighten CJK punctuation kerning so commas/periods don't open holes.
+   - Same line-height as Latin (no override) — keeps vertical rhythm intact.
+   ────────────────────────────────────────────────────────────────── */
+:lang(zh) {
+  font-family: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Source Han Sans SC", "Noto Sans CJK SC", ui-sans-serif, system-ui,
+    sans-serif;
+  font-feature-settings: "palt" 1, "halt" 1;
+  letter-spacing: 0.04em;
+}
+
+/* Headings need less added tracking — they are already large and tight is fine */
+:lang(zh) h1,
+:lang(zh) h2,
+:lang(zh) h3 {
+  letter-spacing: 0.01em;
+}
+
+/* Buttons / pills — keep Chinese labels from collapsing too narrow */
+:lang(zh) button,
+:lang(zh) a {
+  letter-spacing: 0.02em;
+}
+
+@layer utilities {
+  .text-brand-gradient {
+    background-image: linear-gradient(
+      92deg,
+      #818cf8 0%,
+      #a78bfa 22%,
+      #c084fc 42%,
+      #e879f9 60%,
+      #f472b6 78%,
+      #fb923c 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-strong {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Selection color */
+::selection {
+  background: rgba(168, 85, 247, 0.35);
+  color: #fff;
+}
